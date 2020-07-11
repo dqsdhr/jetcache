@@ -13,7 +13,9 @@ public interface SerialPolicy {
 
     String KRYO = "KRYO";
 
-    Function<Object, byte[]> encoder();
+    String JSON = "JACKSON";
 
-    Function<byte[], Object> decoder();
+    Function<Object, Object> encoder();
+
+    Function<Object, Object> decoder();
 }

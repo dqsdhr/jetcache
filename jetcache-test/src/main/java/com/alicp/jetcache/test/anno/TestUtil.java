@@ -10,7 +10,7 @@ import com.alicp.jetcache.anno.support.ConfigProvider;
 import com.alicp.jetcache.anno.support.GlobalCacheConfig;
 import com.alicp.jetcache.embedded.EmbeddedCacheBuilder;
 import com.alicp.jetcache.embedded.LinkedHashMapCacheBuilder;
-import com.alicp.jetcache.support.FastjsonKeyConvertor;
+import com.alicp.jetcache.support.JacksonKeyConvertor;
 import com.alicp.jetcache.support.KryoValueDecoder;
 import com.alicp.jetcache.support.KryoValueEncoder;
 
@@ -24,20 +24,20 @@ public class TestUtil {
     public static GlobalCacheConfig createGloableConfig() {
         Map localBuilders = new HashMap();
         EmbeddedCacheBuilder localBuilder = LinkedHashMapCacheBuilder.createLinkedHashMapCacheBuilder();
-        localBuilder.setKeyConvertor(FastjsonKeyConvertor.INSTANCE);
+        localBuilder.setKeyConvertor(JacksonKeyConvertor.INSTANCE);
         localBuilders.put(CacheConsts.DEFAULT_AREA, localBuilder);
         localBuilders.put("A1", localBuilder);
 
         Map remoteBuilders = new HashMap();
 
         MockRemoteCacheBuilder remoteBuilder = new MockRemoteCacheBuilder();
-        remoteBuilder.setKeyConvertor(FastjsonKeyConvertor.INSTANCE);
+        remoteBuilder.setKeyConvertor(JacksonKeyConvertor.INSTANCE);
         remoteBuilder.setValueEncoder(KryoValueEncoder.INSTANCE);
         remoteBuilder.setValueDecoder(KryoValueDecoder.INSTANCE);
         remoteBuilders.put(CacheConsts.DEFAULT_AREA, remoteBuilder);
 
         remoteBuilder = new MockRemoteCacheBuilder();
-        remoteBuilder.setKeyConvertor(FastjsonKeyConvertor.INSTANCE);
+        remoteBuilder.setKeyConvertor(JacksonKeyConvertor.INSTANCE);
         remoteBuilder.setValueEncoder(KryoValueEncoder.INSTANCE);
         remoteBuilder.setValueDecoder(KryoValueDecoder.INSTANCE);
         remoteBuilders.put("A1", remoteBuilder);

@@ -48,7 +48,7 @@ public class ConfigTest implements ApplicationContextAware {
 
         {
             ExternalCacheConfig c = (ExternalCacheConfig) bean.defualtRemote.config();
-            Assert.assertSame(FastjsonKeyConvertor.INSTANCE, c.getKeyConvertor());
+            Assert.assertSame(JacksonKeyConvertor.INSTANCE, c.getKeyConvertor());
             Assert.assertSame(JavaValueEncoder.INSTANCE, c.getValueEncoder());
             Assert.assertSame(JavaValueDecoder.INSTANCE, c.getValueDecoder());
             Assert.assertFalse(c.isExpireAfterAccess());
@@ -63,12 +63,12 @@ public class ConfigTest implements ApplicationContextAware {
             Assert.assertEquals(1000, c.getExpireAfterWriteInMillis());
             Assert.assertEquals(KryoValueEncoder.class, c.getValueEncoder().getClass());
             Assert.assertEquals(KryoValueDecoder.class, c.getValueDecoder().getClass());
-            Assert.assertSame(FastjsonKeyConvertor.INSTANCE, c.getKeyConvertor());
+            Assert.assertSame(JacksonKeyConvertor.INSTANCE, c.getKeyConvertor());
         }
 
         {
             EmbeddedCacheConfig c = (EmbeddedCacheConfig) bean.defaultLocal.config();
-            Assert.assertSame(FastjsonKeyConvertor.INSTANCE, c.getKeyConvertor());
+            Assert.assertSame(JacksonKeyConvertor.INSTANCE, c.getKeyConvertor());
             Assert.assertEquals(20, c.getLimit());
             Assert.assertFalse(c.isExpireAfterAccess());
             Assert.assertEquals(50, c.getExpireAfterWriteInMillis());
@@ -81,7 +81,7 @@ public class ConfigTest implements ApplicationContextAware {
             Assert.assertFalse(c.isExpireAfterAccess());
             Assert.assertEquals(1000, c.getExpireAfterWriteInMillis());
             Assert.assertEquals(123, c.getLimit());
-            Assert.assertSame(FastjsonKeyConvertor.INSTANCE, c.getKeyConvertor());
+            Assert.assertSame(JacksonKeyConvertor.INSTANCE, c.getKeyConvertor());
         }
     }
 
@@ -109,9 +109,9 @@ public class ConfigTest implements ApplicationContextAware {
         public GlobalCacheConfig config() {
             Map localFactories = new HashMap();
             EmbeddedCacheBuilder localFactory = LinkedHashMapCacheBuilder.createLinkedHashMapCacheBuilder()
-                    .limit(20).keyConvertor(FastjsonKeyConvertor.INSTANCE).expireAfterWrite(50, TimeUnit.MILLISECONDS);
+                    .limit(20).keyConvertor(JacksonKeyConvertor.INSTANCE).expireAfterWrite(50, TimeUnit.MILLISECONDS);
             EmbeddedCacheBuilder localFactory2 = LinkedHashMapCacheBuilder.createLinkedHashMapCacheBuilder()
-                    .limit(10).keyConvertor(FastjsonKeyConvertor.INSTANCE).expireAfterAccess(60, TimeUnit.MILLISECONDS);
+                    .limit(10).keyConvertor(JacksonKeyConvertor.INSTANCE).expireAfterAccess(60, TimeUnit.MILLISECONDS);
             localFactories.put(CacheConsts.DEFAULT_AREA, localFactory);
             localFactories.put("A1", localFactory2);
 
@@ -120,7 +120,7 @@ public class ConfigTest implements ApplicationContextAware {
 
             MockRemoteCacheBuilder remoteBuilder = new MockRemoteCacheBuilder();
             remoteBuilder.setKeyConvertor(null);
-            remoteBuilder.setKeyConvertor(FastjsonKeyConvertor.INSTANCE);
+            remoteBuilder.setKeyConvertor(JacksonKeyConvertor.INSTANCE);
             remoteBuilder.setValueEncoder(JavaValueEncoder.INSTANCE);
             remoteBuilder.setValueDecoder(JavaValueDecoder.INSTANCE);
             remoteBuilder.setExpireAfterWriteInMillis(90);
@@ -128,7 +128,7 @@ public class ConfigTest implements ApplicationContextAware {
             remoteFactories.put(CacheConsts.DEFAULT_AREA, remoteBuilder);
 
             remoteBuilder = new MockRemoteCacheBuilder();
-            remoteBuilder.setKeyConvertor(FastjsonKeyConvertor.INSTANCE);
+            remoteBuilder.setKeyConvertor(JacksonKeyConvertor.INSTANCE);
             remoteBuilder.setValueEncoder(KryoValueEncoder.INSTANCE);
             remoteBuilder.setValueDecoder(KryoValueDecoder.INSTANCE);
             remoteBuilder.setExpireAfterAccessInMillis(110);

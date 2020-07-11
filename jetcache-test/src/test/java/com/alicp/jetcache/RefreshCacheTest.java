@@ -5,7 +5,7 @@ import com.alicp.jetcache.embedded.LinkedHashMapCacheBuilder;
 import com.alicp.jetcache.external.AbstractExternalCache;
 import com.alicp.jetcache.external.MockRemoteCacheBuilder;
 import com.alicp.jetcache.support.DefaultCacheMonitor;
-import com.alicp.jetcache.support.FastjsonKeyConvertor;
+import com.alicp.jetcache.support.JacksonKeyConvertor;
 import com.alicp.jetcache.test.AbstractCacheTest;
 import com.alicp.jetcache.testsupport.Sleeper;
 import org.junit.Assert;
@@ -297,7 +297,7 @@ public class RefreshCacheTest extends AbstractCacheTest {
         return CaffeineCacheBuilder.createCaffeineCacheBuilder()
                 .limit(10)
                 .expireAfterWrite(expire, TimeUnit.MILLISECONDS)
-                .keyConvertor(FastjsonKeyConvertor.INSTANCE)
+                .keyConvertor(JacksonKeyConvertor.INSTANCE)
                 .buildCache();
     }
 
@@ -310,7 +310,7 @@ public class RefreshCacheTest extends AbstractCacheTest {
         Cache remote = new MockRemoteCacheBuilder()
                 .limit(10)
                 .expireAfterWrite(expire, TimeUnit.MILLISECONDS)
-                .keyConvertor(FastjsonKeyConvertor.INSTANCE)
+                .keyConvertor(JacksonKeyConvertor.INSTANCE)
                 .buildCache();
 
         //  build two multilevel cache to test

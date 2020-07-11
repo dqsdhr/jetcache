@@ -54,7 +54,7 @@ public class RedisCacheTest extends AbstractExternalCacheTest {
 
     private void testWithPool(Pool<Jedis> pool) throws Exception {
         cache = RedisCacheBuilder.createRedisCacheBuilder()
-                .keyConvertor(FastjsonKeyConvertor.INSTANCE)
+                .keyConvertor(JacksonKeyConvertor.INSTANCE)
                 .valueEncoder(JavaValueEncoder.INSTANCE)
                 .valueDecoder(JavaValueDecoder.INSTANCE)
                 .jedisPool(pool)
@@ -74,13 +74,13 @@ public class RedisCacheTest extends AbstractExternalCacheTest {
         expireAfterWriteTest(cache.config().getExpireAfterWriteInMillis());
 
         LoadingCacheTest.loadingCacheTest(RedisCacheBuilder.createRedisCacheBuilder()
-                .keyConvertor(FastjsonKeyConvertor.INSTANCE)
+                .keyConvertor(JacksonKeyConvertor.INSTANCE)
                 .valueEncoder(JavaValueEncoder.INSTANCE)
                 .valueDecoder(JavaValueDecoder.INSTANCE)
                 .jedisPool(pool)
                 .keyPrefix(new Random().nextInt() + ""), 0);
         RefreshCacheTest.refreshCacheTest(RedisCacheBuilder.createRedisCacheBuilder()
-                .keyConvertor(FastjsonKeyConvertor.INSTANCE)
+                .keyConvertor(JacksonKeyConvertor.INSTANCE)
                 .valueEncoder(JavaValueEncoder.INSTANCE)
                 .valueDecoder(JavaValueDecoder.INSTANCE)
                 .jedisPool(pool)
@@ -99,7 +99,7 @@ public class RedisCacheTest extends AbstractExternalCacheTest {
         int thread = 10;
         int time = 3000;
         cache = RedisCacheBuilder.createRedisCacheBuilder()
-                .keyConvertor(FastjsonKeyConvertor.INSTANCE)
+                .keyConvertor(JacksonKeyConvertor.INSTANCE)
                 .valueEncoder(KryoValueEncoder.INSTANCE)
                 .valueDecoder(KryoValueDecoder.INSTANCE)
                 .jedisPool(pool)
@@ -147,7 +147,7 @@ public class RedisCacheTest extends AbstractExternalCacheTest {
         builder.setReadFromSlave(true);
         builder.setJedisSlavePools(pool2, pool3);
         builder.setSlaveReadWeights(1, 1);
-        builder.setKeyConvertor(FastjsonKeyConvertor.INSTANCE);
+        builder.setKeyConvertor(JacksonKeyConvertor.INSTANCE);
         builder.setValueEncoder(JavaValueEncoder.INSTANCE);
         builder.setValueDecoder(JavaValueDecoder.INSTANCE);
         builder.setKeyPrefix(new Random().nextInt() + "");

@@ -10,7 +10,7 @@ import com.alicp.jetcache.anno.support.ConfigMap;
 import com.alicp.jetcache.anno.support.ConfigProvider;
 import com.alicp.jetcache.anno.support.GlobalCacheConfig;
 import com.alicp.jetcache.embedded.LinkedHashMapCacheBuilder;
-import com.alicp.jetcache.support.FastjsonKeyConvertor;
+import com.alicp.jetcache.support.JacksonKeyConvertor;
 import com.alicp.jetcache.testsupport.CountClass;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -39,7 +39,7 @@ public class CacheHandlerUpdateTest {
         configProvider.setGlobalCacheConfig(globalCacheConfig);
         configProvider.init();
         cache = LinkedHashMapCacheBuilder.createLinkedHashMapCacheBuilder()
-                .keyConvertor(FastjsonKeyConvertor.INSTANCE)
+                .keyConvertor(JacksonKeyConvertor.INSTANCE)
                 .buildCache();
 
 

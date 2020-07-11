@@ -11,7 +11,7 @@ import com.alicp.jetcache.embedded.EmbeddedCacheConfig;
 import com.alicp.jetcache.embedded.LinkedHashMapCache;
 import com.alicp.jetcache.external.ExternalCacheConfig;
 import com.alicp.jetcache.external.MockRemoteCache;
-import com.alicp.jetcache.support.FastjsonKeyConvertor;
+import com.alicp.jetcache.support.JacksonKeyConvertor;
 import com.alicp.jetcache.support.JavaValueDecoder;
 import com.alicp.jetcache.support.JavaValueEncoder;
 import com.alicp.jetcache.test.AbstractCacheTest;
@@ -145,7 +145,7 @@ public class CreateCacheTest extends SpringTest {
                 Assert.assertNull(cache1.get("SameKey"));
 
                 Assert.assertTrue(getTarget(cache1) instanceof MockRemoteCache);
-                Assert.assertSame(FastjsonKeyConvertor.INSTANCE, cache1.config().getKeyConvertor());
+                Assert.assertSame(JacksonKeyConvertor.INSTANCE, cache1.config().getKeyConvertor());
 
                 Assert.assertTrue(getTarget(cacheWithConfig) instanceof MultiLevelCache);
                 Assert.assertEquals(50, cacheWithConfig.config().getExpireAfterWriteInMillis());

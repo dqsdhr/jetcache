@@ -22,7 +22,6 @@ import io.lettuce.core.cluster.api.sync.RedisClusterCommands;
 import io.lettuce.core.masterslave.MasterSlave;
 import io.lettuce.core.masterslave.StatefulRedisMasterSlaveConnection;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -121,12 +120,12 @@ public class RedisLettuceCacheTest extends AbstractExternalCacheTest {
         Cache l1Cache = CaffeineCacheBuilder.createCaffeineCacheBuilder()
                 .limit(10)
                 .expireAfterWrite(500, TimeUnit.MILLISECONDS)
-                .keyConvertor(FastjsonKeyConvertor.INSTANCE)
+                .keyConvertor(JacksonKeyConvertor.INSTANCE)
                 .buildCache();
         RedisClient client = RedisClient.create("redis://127.0.0.1");
         Cache l2Cache = RedisLettuceCacheBuilder.createRedisLettuceCacheBuilder()
                 .redisClient(client)
-                .keyConvertor(FastjsonKeyConvertor.INSTANCE)
+                .keyConvertor(JacksonKeyConvertor.INSTANCE)
                 .valueEncoder(JavaValueEncoder.INSTANCE)
                 .valueDecoder(JavaValueDecoder.INSTANCE)
                 .keyPrefix(new Random().nextInt() + "")
@@ -150,7 +149,7 @@ public class RedisLettuceCacheTest extends AbstractExternalCacheTest {
         cache = RedisLettuceCacheBuilder.createRedisLettuceCacheBuilder()
                 .redisClient(client)
                 .connection(connection)
-                .keyConvertor(FastjsonKeyConvertor.INSTANCE)
+                .keyConvertor(JacksonKeyConvertor.INSTANCE)
                 .valueEncoder(JavaValueEncoder.INSTANCE)
                 .valueDecoder(JavaValueDecoder.INSTANCE)
                 .keyPrefix(new Random().nextInt() + "")
@@ -163,7 +162,7 @@ public class RedisLettuceCacheTest extends AbstractExternalCacheTest {
 
         LoadingCacheTest.loadingCacheTest(RedisLettuceCacheBuilder.createRedisLettuceCacheBuilder()
                 .redisClient(client)
-                .keyConvertor(FastjsonKeyConvertor.INSTANCE)
+                .keyConvertor(JacksonKeyConvertor.INSTANCE)
                 .valueEncoder(JavaValueEncoder.INSTANCE)
                 .valueDecoder(JavaValueDecoder.INSTANCE)
                 .keyPrefix(new Random().nextInt() + ""), 50);
@@ -181,7 +180,7 @@ public class RedisLettuceCacheTest extends AbstractExternalCacheTest {
         int time = 3000;
         cache = RedisLettuceCacheBuilder.createRedisLettuceCacheBuilder()
                 .redisClient(client)
-                .keyConvertor(FastjsonKeyConvertor.INSTANCE)
+                .keyConvertor(JacksonKeyConvertor.INSTANCE)
                 .valueEncoder(KryoValueEncoder.INSTANCE)
                 .valueDecoder(KryoValueDecoder.INSTANCE)
                 .keyPrefix(new Random().nextInt() + "")

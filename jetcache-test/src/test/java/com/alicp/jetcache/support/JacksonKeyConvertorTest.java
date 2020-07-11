@@ -10,7 +10,7 @@ import org.junit.Test;
 /**
  * @author <a href="mailto:areyouok@gmail.com">huangli</a>
  */
-public class FastjsonKeyConvertorTest {
+public class JacksonKeyConvertorTest {
     static class C extends DynamicQuery {
         private C mate;
 
@@ -25,7 +25,7 @@ public class FastjsonKeyConvertorTest {
 
     @Test
     public void test() {
-        FastjsonKeyConvertor g = FastjsonKeyConvertor.INSTANCE;
+        JacksonKeyConvertor g = JacksonKeyConvertor.INSTANCE;
         Object k1, k2, k3;
 
         k1 = g.apply(new Object[]{10, 20, 10});

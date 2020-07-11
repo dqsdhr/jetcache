@@ -9,7 +9,7 @@ import com.alicp.jetcache.anno.CacheType;
 import com.alicp.jetcache.anno.KeyConvertor;
 import com.alicp.jetcache.anno.support.*;
 import com.alicp.jetcache.embedded.LinkedHashMapCacheBuilder;
-import com.alicp.jetcache.support.FastjsonKeyConvertor;
+import com.alicp.jetcache.support.JacksonKeyConvertor;
 import com.alicp.jetcache.test.support.DynamicQuery;
 import com.alicp.jetcache.testsupport.CountClass;
 import org.junit.jupiter.api.AfterEach;
@@ -40,7 +40,7 @@ public class CacheHandlerTest {
         configProvider.setGlobalCacheConfig(globalCacheConfig);
         configProvider.init();
         cache = LinkedHashMapCacheBuilder.createLinkedHashMapCacheBuilder()
-                .keyConvertor(FastjsonKeyConvertor.INSTANCE)
+                .keyConvertor(JacksonKeyConvertor.INSTANCE)
                 .buildCache();
 
         cachedAnnoConfig = new CachedAnnoConfig();

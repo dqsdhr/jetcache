@@ -31,7 +31,7 @@
             </map>
         </property>
     </bean>
-    <bean id="fastjsonKeyConvertor" class="com.alicp.jetcache.support.FastjsonKeyConvertor"/>
+    <bean id="fastjsonKeyConvertor" class="com.alicp.jetcache.support.JacksonKeyConvertor"/>
     <bean id="localCacheBuilder" class="com.alicp.jetcache.embedded.LinkedHashMapCacheBuilder">
         <property name="keyConvertor" ref="fastjsonKeyConvertor"/>
     </bean>

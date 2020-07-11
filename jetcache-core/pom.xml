@@ -22,10 +22,9 @@
             <artifactId>slf4j-api</artifactId>
         </dependency>
 
-
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
+            <groupId>com.unischool.dera.framework</groupId>
+            <artifactId>frame-jackson</artifactId>
         </dependency>
         <dependency>
             <groupId>com.esotericsoftware</groupId>
